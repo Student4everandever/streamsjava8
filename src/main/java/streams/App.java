@@ -39,33 +39,31 @@ public class App {
         orders.add(order8);
         orders.add(order9);
 
-        System.out.println(orders.toString());
-
         List<Item> allItemsNoDuplicates = orders.stream()
                 .flatMap(e -> Stream.of(e.getItem()))
                 .distinct()
                 .collect(Collectors.toList());
 
-        System.out.println(allItemsNoDuplicates);
+        System.out.println("#1 All items:\n" + allItemsNoDuplicates);
 
         List<Order> ordersWithClosedStatusOnItem = orders.stream()
                 .filter(e -> e.getItem().getStatus() == Status.CLOSED)
                 .collect(Collectors.toList());
 
-        System.out.println(ordersWithClosedStatusOnItem);
+        System.out.println("#2 Items with 'Closed' status:\n" + ordersWithClosedStatusOnItem);
 
         Map<String, Item> itemsInProcessWithOrderReference = orders.stream()
                 .filter(e -> e.getItem().getStatus() == Status.IN_PROCESS)
                 .collect(Collectors.toMap(Order::getName, Order::getItem));
 
-        System.out.println(itemsInProcessWithOrderReference);
+        System.out.println("#3.1 Items with status 'In progress' and reference to Order:\n" + itemsInProcessWithOrderReference);
 
         List<String> stringItemsList = orders.stream()
                 .filter(e -> e.getItem().getStatus() == Status.IN_PROCESS)
                 .flatMap(e -> Stream.of(e.getItem().toString() + " in " + e.getName()))
                 .collect(Collectors.toList());
 
-        System.out.println(stringItemsList);
+        System.out.println("#3.2 Items with status 'In progress' and reference to Order:\n" + stringItemsList);
 
     }
 }
