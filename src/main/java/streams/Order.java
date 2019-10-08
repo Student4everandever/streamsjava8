@@ -1,13 +1,14 @@
 package streams;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Order {
 
     private String name;
-    private Item item;
+    private List<Item> item;
 
-    public Order(String name, Item item) {
+    public Order(String name, List<Item> item) {
         this.name = name;
         this.item = item;
     }
@@ -20,11 +21,11 @@ public class Order {
         this.name = name;
     }
 
-    public Item getItem() {
+    public List<Item> getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(List<Item> item) {
         this.item = item;
     }
 
